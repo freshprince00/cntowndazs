@@ -10,6 +10,10 @@ django==4.2.19
     # via -r requirements.in
 django-environ==0.12.0
     # via -r requirements.in
+gunicorn==23.0.0
+    # via -r requirements.in
+packaging==24.2
+    # via gunicorn
 sqlparse==0.5.3
     # via django
 typing-extensions==4.12.2

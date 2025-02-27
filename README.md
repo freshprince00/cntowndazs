@@ -1,10 +1,10 @@
 # cnntowndazs
 A clothing store inspired by YZY
 
-* [ ] Dependencies
-* [ ] Django
-* [ ] Configuration via django-environ
-* [ ] Configure web server
+* [x] Dependencies
+* [x] Django
+* [x] Configuration via django-environ
+* [x] Configure web server
 * [ ] Testing
 * [ ] Continuous Integration / pre-commit
 * [ ] Django modelling

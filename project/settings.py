@@ -21,13 +21,14 @@ env = environ.Env(
     ALLOWED_HOSTS=(list, []),
     DEBUG=(bool, False),
 )
-environ.Env.read_env(BASE_DIR / '.env'
+environ.Env.read_env(BASE_DIR / '.env')
+
 
 SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS: list[str] = [str] = env("ALLOWED_HOSTS")
+ALLOWED_HOSTS: list[str] = env("ALLOWED_HOSTS")
 
 # Application definition
 
@@ -67,6 +68,17 @@ TEMPLATES = [
         },
     },
 ]
+
+# As of Django 4.1, the cached loader is used in development mode.
+# runserver works around this in some manner, but Gunicorn does not.
+# Override the loaders to get non-cached behavior.
+if DEBUG:
+    # app_dirs isn't allowed to be True when the loaders key is present.
+    TEMPLATES[0]["APP_DIRS"] = False
+    TEMPLATES[0]["OPTIONS"]["loaders"] = [
+        "django.template.loaders.filesystem.Loader",
+        "django.template.loaders.app_directories.Loader",
+    ]
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
